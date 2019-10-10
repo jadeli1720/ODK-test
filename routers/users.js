@@ -46,7 +46,8 @@ function convertForm(req, res, next) {
                 metaData: meta.userId
             };
             next();
-    })
+    });
+    next();
 }
 
 module.exports = router;
