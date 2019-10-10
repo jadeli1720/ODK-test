@@ -14,7 +14,8 @@ router.post('/', (req, res) => {
     }
 });
 
-router.post('/odk/', FormSubmissionMiddleware, convertForm, (req, res) => {
+router
+    .post('/odk/', convertForm, (req, res) => {
     const user = req.body;
 
     console.log("req.submission ", req.submission);
@@ -49,7 +50,6 @@ function convertForm(req, res, next) {
             };
             next();
     });
-    next();
 }
 
 module.exports = router;
