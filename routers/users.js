@@ -14,6 +14,7 @@ router.post('/', (req, res) => {
 
 router.post('/odk/', convertForm, (req, res) => {
     const user = req.body;
+
     console.log("req.submission ", req.submission);
     console.log("req.submission.json ", req.submission.json);
     res.status(200).json(req.body);
@@ -24,19 +25,27 @@ router.post('/odk/', convertForm, (req, res) => {
      }*/
 });
 
+
 function convertForm(req, res, next) {
     console.log('REQ.BODY FROM CONVERTER ', req.body);
-    xform2json(req.body, function (err, form) {
+
+    const userId = req.query.id;
+    const id = req.params.id;
+    const meta = {
+        id: id,
+        userId: userId,
+    };
+    console.log('QUERT.ID ', userId);
+    console.log('ID ', id);
+
+    xform2json(req.body, meta, function (err, form) {
         console.log('FORM ', form);
-        if (form) {
             req.submission = {
                 json: form,
                 xml: req.body,
+                metaData: meta.userId
             };
             next();
-        } else {
-            res.status(500).json(err);
-        }
     })
 }
 
