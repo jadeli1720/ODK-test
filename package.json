@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.1",
     "knex": "^0.19.5",
+    "openrosa-form-submission-middleware": "^1.1.0",
     "pg": "^7.12.1",
     "xform-to-json": "^1.2.1"
   },
