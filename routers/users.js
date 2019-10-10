@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const db = require('./usersDB');
 const xform2json = require('xform-to-json');
+const FormSubmissionMiddleware = require('openrosa-form-submission-middleware');
+
 
 router.post('/', (req, res) => {
     const user = req.body;
@@ -12,7 +14,7 @@ router.post('/', (req, res) => {
     }
 });
 
-router.post('/odk/', convertForm, (req, res) => {
+router.post('/odk/', FormSubmissionMiddleware, convertForm, (req, res) => {
     const user = req.body;
 
     console.log("req.submission ", req.submission);
@@ -46,7 +48,8 @@ function convertForm(req, res, next) {
                 metaData: meta.userId
             };
             next();
-    })
+    });
+    next();
 }
 
 module.exports = router;
