@@ -16,6 +16,7 @@ router.post('/odk/', convertForm, (req, res) => {
     const user = req.body;
     console.log("req.submission ", req.submission);
     console.log("req.submission.json ", req.submission.json);
+    res.status(200).json(req.body);
     /* if (user) {
          db.add(user)
              .then(([user]) => res.status(201).json(user))
