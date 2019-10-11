@@ -3,6 +3,15 @@ const db = require('./usersDB');
 const fs = require('fs');
 const xml2js = require('xml2js');
 const parser = new xml2js.Parser();
+const multer = require('multer');
+const storage ={
+    dest: './uploads/',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+};
+const upload = multer(storage);
+
 
 
 router.post('/', (req, res) => {
@@ -16,7 +25,7 @@ router.post('/', (req, res) => {
     }
 });
 
-router.post('/odk/', (req, res) => {
+router.post('/odk/', upload.single('file'), (req, res) => {
    /* const {'h:html' : root} = req.body;
     const {'h:head': head } = root;
     const headData = head[0];
@@ -29,8 +38,10 @@ router.post('/odk/', (req, res) => {
     const {'password' : password} = data[0];
     console.log('username ', username, 'password ', password);*/
     console.log('BODY ', req.body);
-    console.log('FILE ', req.files);
-    fs.readFile(req.files, (err, data) => {
+    console.log('FILE ', req.file);
+
+    const path = req.file.path;
+    fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
         if (err) throw err;
         console.log('Data XML ', data);
         parser.parseString(data, function (err, result) {
