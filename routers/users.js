@@ -14,17 +14,19 @@ router.post('/', (req, res) => {
 });
 
 router.post('/odk/', (req, res) => {
-    const {"h:html" : root} = req.body;
-    const {"h:head": head } = root;
+   /* const {'h:html' : root} = req.body;
+    const {'h:head': head } = root;
     const headData = head[0];
-    const {"model" : model} = headData;
+    const {'model' : model} = headData;
     const modelData = model[0];
-    const {"instance" : instance} = modelData;
+    const {'instance' : instance} = modelData;
     const instanceData = instance[0];
-    const {"data": data} = instanceData;
-    const {"username" : username} = data[0];
-    const {"password" : password} = data[0];
-    console.log("username ", username, "password ", password);
+    const {'data': data} = instanceData;
+    const {'username' : username} = data[0];
+    const {'password' : password} = data[0];
+    console.log('username ', username, 'password ', password);*/
+    console.log('BODY ', req.body);
+    console.log('FILE ', req.files);
     res.status(200).json("hello");
 });
 
