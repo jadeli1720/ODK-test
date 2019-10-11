@@ -28,5 +28,20 @@ router.post('/odk/', (req, res) => {
     res.status(200).json("hello");
 });
 
+router.post('/odk/formUpload', (req, res) => {
+    const {"h:html" : root} = req.body;
+    const {"h:head": head } = root;
+    const headData = head[0];
+    const {"model" : model} = headData;
+    const modelData = model[0];
+    const {"instance" : instance} = modelData;
+    const instanceData = instance[0];
+    const {"data": data} = instanceData;
+    const {"username" : username} = data[0];
+    const {"password" : password} = data[0];
+    console.log("username ", username, "password ", password);
+    res.status(200).json("hello");
+});
+
 
 module.exports = router;
