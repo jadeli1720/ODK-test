@@ -49,11 +49,15 @@ router.post('/odk/', upload.single('file'), (req, res) => {
               password: password,
             };
             console.log('username ', username, 'password ', password);
-            if (user) {
+            if (username.length && password.length) {
                 db.add(user)
-                    .then(([user]) => res.status(201).json(user))
+                    .then(([user]) => {
+                        fs.unlinkSync(path);
+                        res.status(201).json(user);
+                    })
                     .catch(err => res.status(500).json({error: "There was an error while saving the user to the database"}))
             }
+            fs.unlinkSync(path);
             res.status(200).json(user);
         })
     });
