@@ -18,7 +18,7 @@
     "express-fileupload": "^1.1.6-alpha.5",
     "express-xml-bodyparser": "^0.3.0",
     "helmet": "^3.21.1",
-    "knex": "^0.19.5",
+    "knex": "^2.4.0",
     "multer": "^1.4.2",
     "openrosa-form-submission-middleware": "^1.1.0",
     "pg": "^7.12.1",
